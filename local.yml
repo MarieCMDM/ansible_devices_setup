@@ -8,7 +8,7 @@
     package:
       name: 
         - htop
-        - sensor
+        - python3-psutil
 
   - name: copy wallpaper
     copy:
@@ -18,11 +18,13 @@
       group: root
 
   - name: set wallpaper
+    become_user: mattia
     dconf:
       key: "/org/gnome/desktop/background/picture-uri"
       value: "'file:///usr/share/backgrounds/space-raccoon.jpg'"
   
   - name: set wallpaper position
+    become_user: mattia
     dconf:
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
