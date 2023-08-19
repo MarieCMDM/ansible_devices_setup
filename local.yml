@@ -4,6 +4,25 @@
   become: true
 
   tasks:
-  - name: install htop
+  - name: install monitoring packages
     package:
-      name: htop
+      name: 
+        - htop
+        - sensor
+
+  - name: copy wallpaper
+    copy:
+      src: files/wallpapers.png
+      dest: /usr/share/backgrounds/space-raccoon.jpg
+      owner: root
+      group: root
+
+  - name: set wallpaper
+    dconf:
+      key: "/org/gnome/desktop/background/picture-uri"
+      value: "'file:///usr/share/backgrounds/space-raccoon.jpg'"
+  
+  - name: set wallpaper position
+    dconf:
+      key: "/org/gnome/desktop/background/picture-options"
+      value: "'zoom'"
