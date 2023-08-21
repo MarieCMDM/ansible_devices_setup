@@ -1,0 +1,43 @@
+---
+- hosts: workstations
+  connection: local
+  become: true
+
+  tasks:
+  - name: update packages
+    apt: update
+
+  - name: upgrade packages
+    apt: upgrade
+
+  - name: install monitoring packages
+    package:
+      name: 
+        - htop
+        - python3-psutil
+
+  - name: copy wallpaper
+    copy:
+      src: files/space-raccoon.jpg
+      dest: /usr/share/backgrounds/space-raccoon.jpg
+      owner: root
+      group: root
+
+  - name: set wallpaper
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/desktop/background/picture-uri"
+      value: "'file:///usr/share/backgrounds/space-raccoon.jpg'"
+  
+  - name: set wallpaper position
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/desktop/background/picture-options"
+      value: "'zoom'"
+
+  - name: copy bashrc config
+    copy:
+      src: files/bashrc
+      dest: /home/mattia/.bashrc_test
+      owner: mattia
+      group: mattia
