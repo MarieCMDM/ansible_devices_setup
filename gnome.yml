@@ -1,0 +1,77 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+### INSTALL GNOME TWEAKS AND EXTENSIONS
+  - name: install gnome tweaks
+    apt:
+      name:
+        - gnome-shell-extensions
+        - gnome-tweaks
+        - dbus-x11
+      state: latest
+
+  # - name: install extensions
+  #   become: true
+  #   package:
+  #     name:
+  #       - gnome-shell-extension-bluetooth-quick-connect
+  #       - gnome-shell-extension-emoji-selector
+  #       - gnome-shell-extension-gnome-ui-tune
+  #       - gnome-shell-extension-vitals
+
+  # - name: enable extensions
+  #   dconf:
+  #     key: "/org/gnome/shell/enabled-extensions"
+  #     value: 
+  #       - 'bluetooth-quick-connect@bjarosze.gmail.com'
+  #       - 'emoji-selector@maestroschan.fr'
+  #       - 'gnome-ui-tune@itstime.tech'
+  #       - 'Vitals@CoreCoding.com'
+  #       - 'ubuntu-appindicator@ubuntu.com'
+  #       - 'ubuntu-dock@ubuntu.com'
+
+### SET PREFERENCES ###
+  # - name: set dark theme
+  #   become_user: mattia
+  #   shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+  # #   become_user: mattia
+  # #   ansible.builtin.command: >
+  # #     /usr/bin/bash -c "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+  #   register: command_output
+
+  # - debug:
+  #     var: command_output.stdout_lines
+  # - debug:
+  #     var: command_output.stderr_lines
+
+  - name: file browser shortcut
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/home"
+      value: "['<Super>f']"
+
+  - name: web browser shortcut
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/www"
+      value: "['<Super>w']"
+
+  - name: terminal shortcut name
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+      value: "'terminal'"
+  - name: terminal shortcut command
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+      value: "'gnome-terminal --maximize'"
+  - name: terminal shortcut binding
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+      value: "'<Super>t'"
+
+  - name: enable custom keybindings
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+      value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"

@@ -1,20 +1,36 @@
 ---
-- hosts: localhosts
+- hosts: localhost
   connection: local
   become: true
 
   tasks:
-  - name: update packages
-    apt: update
 
-  - name: upgrade packages
-    apt: upgrade
+### INSTALL DEVELOPMENT TOOLS ###
 
-  - name: install monitoring packages
-    package:
-      name: 
-        - htop
-        - python3-psutil
+  - name: Devel tools installation
+    snap:
+      name:
+        - brave
+        - code
+        - insomnia
+      state: lastest
+    apt:
+      name:
+        - python3-pip
+        - nodejs
+        - npm
+      state: lastest   
+
+  - name: PIP3 Packages installation
+    pip:
+      name:
+
+  - name: NPM Packages installation
+    npm:
+      name:
+      
+  
+### USE PERSONAL WALLPAPER ###
 
   - name: copy wallpaper
     copy:
@@ -26,7 +42,7 @@
   - name: set wallpaper
     become_user: mattia
     dconf:
-      key: "/org/gnome/desktop/background/picture-uri"
+      key: "/org/gnome/desktop/background/picture-uri-dark"
       value: "'file:///usr/share/backgrounds/space-raccoon.jpg'"
   
   - name: set wallpaper position
@@ -35,9 +51,4 @@
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
 
-  - name: copy bashrc config
-    copy:
-      src: files/bashrc
-      dest: /home/mattia/.bashrc_test
-      owner: mattia
-      group: mattia
+### USE PERSONAL KEYBINDINGS ###

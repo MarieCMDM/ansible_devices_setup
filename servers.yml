@@ -4,21 +4,3 @@
   become: true
 
   tasks:
-  - name: update packages
-    apt: update
-
-  - name: upgrade packages
-    apt: upgrade
-
-  - name: install monitoring packages
-    package:
-      name: 
-        - htop
-        - python3-psutil
-
-  - name: copy bashrc config
-    copy:
-      src: files/bashrc
-      dest: /home/mattia/.bashrc
-      owner: mattia
-      group: mattia

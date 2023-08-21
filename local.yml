@@ -4,21 +4,29 @@
   become: true
 
   tasks:
-  - name: update packages
-    apt: update
+  
+  # - name: apt update & upgrade
+  #   apt:
+  #     upgrade: yes
+  #     update_cache: 'yes'
 
-  - name: upgrade packages
-    apt: upgrade
+  # - name: install monitoring packages
+  #   package:
+  #     name: 
+  #       - htop
+  #       - python3-psutil
+  
+  - name: create Github folder
+    become_user: mattia
+    file:
+      path: /home/mattia/Documents/test
+      state: directory
 
-  - name: install monitoring packages
-    package:
-      name: 
-        - htop
-        - python3-psutil
-
-  - name: copy bashrc config
-    copy:
-      src: files/bashrc
-      dest: /home/mattia/.bashrc
-      owner: mattia
-      group: mattia
+  - name: test
+    shell: "touch /home/mattia/Documents/test/test.txt"
+  # - name: copy bashrc config
+  #   copy:
+  #     src: files/bashrc
+  #     dest: /home/mattia/.bashrc
+  #     owner: mattia
+  #     group: mattia
