@@ -32,23 +32,28 @@
   
 ### USE PERSONAL WALLPAPER ###
 
-  - name: copy wallpaper
+  - name: Wallpaper settings (copy wallpapers)
     copy:
-      src: files/space-raccoon.jpg
-      dest: /usr/share/backgrounds/space-raccoon.jpg
+      src: files/wallpapers/{{ item }}
+      dest: /usr/share/backgrounds/{{ item }}
       owner: root
       group: root
+    with_items:
+      - looking-raccoon.png
+      - space-reccoon.jpg
+      - wallhaven-1.png
+      - wallhaven-2.png
+      - wallhaven-3.jpg
 
-  - name: set wallpaper
+
+  - name: Wallpaper settings (set wallpaper)
     become_user: mattia
     dconf:
       key: "/org/gnome/desktop/background/picture-uri-dark"
       value: "'file:///usr/share/backgrounds/space-raccoon.jpg'"
   
-  - name: set wallpaper position
+  - name: Wallpaper settings (set wallpaper position)
     become_user: mattia
     dconf:
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
-
-### USE PERSONAL KEYBINDINGS ###
