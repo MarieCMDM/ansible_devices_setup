@@ -21,7 +21,10 @@
       state: latest
 
   - name: Extensiopns | install 
-    script: "./files/extensions/gnome-extensions.py"
+    shell: "gext install gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
+
+  - name: Extensiopns | install 
+    shell: "gext enable gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
 
   # - name: Extensions | copy extensions locally
   #   copy:
