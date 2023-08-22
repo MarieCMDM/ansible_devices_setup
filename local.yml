@@ -16,6 +16,8 @@
         - htop
         - python3-psutil
         - nano
+        - curl
+        - wget
   
   - name: Create Github folder
     become_user: mattia
@@ -29,3 +31,6 @@
       dest: /home/mattia/.bashrc
       owner: mattia
       group: mattia
+
+  - name: Use RTC time for dual boot
+    shell: "timedatectl set-local-rtc 1 --adjust-system-clock"

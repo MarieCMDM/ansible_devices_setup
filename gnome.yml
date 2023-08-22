@@ -6,6 +6,7 @@
   tasks:
 
 ### INSTALL GNOME TWEAKS AND EXTENSIONS
+
   - name: Extensions | install gnome tweaks
     apt:
       name:
@@ -27,6 +28,7 @@
       - Vitals@CoreCoding.com
 
 ### SET PREFERENCES ###
+
   # - name: Preferences | set dark theme ##didn't work
   #   become_user: mattia
   #   shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
