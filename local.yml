@@ -18,6 +18,7 @@
         - nano
         - curl
         - wget
+        - neofetch
   
   - name: Create Github folder
     become_user: mattia

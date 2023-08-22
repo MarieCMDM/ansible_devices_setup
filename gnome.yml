@@ -13,24 +13,32 @@
         - gnome-shell-extensions
         - gnome-tweaks
         - dbus-x11
+        - python3-pip
+      state: latest
+    pip3:
+      name:
+        - gnome-extensions-cli
       state: latest
 
-  - name: Extensions | copy extensions locally
-    copy:
-      src: files/extensions/{{ item }}
-      dest: /home/mattia/.local/share/gnome-shell/extensions/{{ item }}
-      owner: mattia
-      group: mattia
-    with_items:
-      - gnome-ui-tune@itstime.tech
-      - bluetooth-quick-connect@bjarosze.gmail.com
-      - emoji-selector@maestroschan.fr
-      - Vitals@CoreCoding.com
+  - name: Extensiopns | install 
+    script: "./files/extensions/gnome-extensions.py"
+
+  # - name: Extensions | copy extensions locally
+  #   copy:
+  #     src: files/extensions/{{ item }}
+  #     dest: /home/mattia/.local/share/gnome-shell/extensions/{{ item }}
+  #     owner: mattia
+  #     group: mattia
+  #   with_items:
+  #     - gnome-ui-tune@itstime.tech
+  #     - bluetooth-quick-connect@bjarosze.gmail.com
+  #     - emoji-selector@maestroschan.fr
+  #     - Vitals@CoreCoding.com
 
 ### SET PREFERENCES ###
 
   - name: Preferences | set dark theme ##didn't work
-    become_user: mattia
+    # become_user: mattia
     shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
     register: command_output
 
@@ -69,7 +77,7 @@
     become_user: mattia
     dconf:
       key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
-      value: "'gnome-terminal --maximize'"
+      value: "'gnome-terminal'"
   
   - name: Keybindings | terminal shortcut binding
     become_user: mattia
