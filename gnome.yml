@@ -29,15 +29,15 @@
 
 ### SET PREFERENCES ###
 
-  # - name: Preferences | set dark theme ##didn't work
-  #   become_user: mattia
-  #   shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
-  #   register: command_output
+  - name: Preferences | set dark theme ##didn't work
+    become_user: mattia
+    shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+    register: command_output
 
-  # - debug:
-  #     var: command_output.stdout_lines
-  # - debug:
-  #     var: command_output.stderr_lines
+  - debug:
+      var: command_output.stdout_lines
+  - debug:
+      var: command_output.stderr_lines
 
 ### SET KEYBINDINGS ###  
 
