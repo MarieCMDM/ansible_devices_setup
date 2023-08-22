@@ -14,13 +14,14 @@
         - gnome-tweaks
         - dbus-x11
         - python3-pip
+        - python3-gnome-extensions-cli
       state: latest
     
-  - name: Extensions | install pip3 gext 
-    pip:
-      name:
-        - gnome-extensions-cli
-      state: latest
+  # - name: Extensions | install pip3 gext 
+  #   pip:
+  #     name:
+  #       - gnome-extensions-cli
+  #     state: latest
 
   - name: Extensiopns | install 
     shell: "gext install gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
@@ -28,22 +29,10 @@
   - name: Extensiopns | install 
     shell: "gext enable gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
 
-  # - name: Extensions | copy extensions locally
-  #   copy:
-  #     src: files/extensions/{{ item }}
-  #     dest: /home/mattia/.local/share/gnome-shell/extensions/{{ item }}
-  #     owner: mattia
-  #     group: mattia
-  #   with_items:
-  #     - gnome-ui-tune@itstime.tech
-  #     - bluetooth-quick-connect@bjarosze.gmail.com
-  #     - emoji-selector@maestroschan.fr
-  #     - Vitals@CoreCoding.com
-
 ### SET PREFERENCES ###
 
   - name: Preferences | set dark theme ##didn't work
-    # become_user: mattia
+    become_user: mattia
     shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
     register: command_output
 

@@ -117,8 +117,11 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="/usr/local/lib/node_modules/@angular/cli/bin/ng:$PATH"
-
+export PATH="/home/mattia/.local/bin:$PATH"
 
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+# alias to reload .bashrc 
+alias reload_bashrc='source ~/.bashrc'

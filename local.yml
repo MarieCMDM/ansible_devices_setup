@@ -10,6 +10,13 @@
       upgrade: yes
       update_cache: 'yes'
 
+  - name: Copy .bashrc config
+    copy:
+      src: files/bashrc
+      dest: /home/mattia/.bashrc
+      owner: mattia
+      group: mattia
+
   - name: Install monitoring packages
     package:
       name: 
@@ -25,13 +32,6 @@
     file:
       path: /home/mattia/Documents/GitHub
       state: directory
-
-  - name: Copy .bashrc config
-    copy:
-      src: files/bashrc
-      dest: /home/mattia/.bashrc
-      owner: mattia
-      group: mattia
 
   - name: Use RTC time for dual boot
     shell: "timedatectl set-local-rtc 1 --adjust-system-clock"
