@@ -17,7 +17,7 @@
       state: latest
     
   - name: Extensions | install pip3 gext 
-    pip3:
+    pip:
       name:
         - gnome-extensions-cli
       state: latest
