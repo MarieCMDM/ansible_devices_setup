@@ -14,14 +14,14 @@
         - gnome-tweaks
         - dbus-x11
         - python3-pip
-        - python3-gnome-extensions-cli
       state: latest
     
-  # - name: Extensions | install pip3 gext 
-  #   pip:
-  #     name:
-  #       - gnome-extensions-cli
-  #     state: latest
+  - name: Extensions | install pip3 gext 
+    pip:
+      name:
+        - gnome-extensions-cli
+      state: latest
+      extra_args: --break-system-packages
 
   - name: Extensiopns | install 
     shell: "gext install gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
@@ -33,7 +33,7 @@
 
   - name: Preferences | set dark theme ##didn't work
     become_user: mattia
-    shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+    shell: "gsettings set org.gnome.desktop.interface color-scheme prefer-light"
     register: command_output
 
   - debug:
