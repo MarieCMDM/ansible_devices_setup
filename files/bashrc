@@ -125,3 +125,6 @@ source <(ng completion script)
 
 # alias to reload .bashrc 
 alias reload_bashrc='source ~/.bashrc'
+
+# launch neofetch
+neofetch

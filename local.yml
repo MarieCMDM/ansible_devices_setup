@@ -26,6 +26,13 @@
         - curl
         - wget
         - neofetch
+
+  - name: Copy dotfiles
+    copy:
+      src: files/config_dotfiles/*
+      dest: /home/mattia/.config/
+      owner: mattia
+      group: mattia
   
   - name: Create Github folder
     become_user: mattia
