@@ -5,6 +5,11 @@
 
   tasks:
 
+### SET RTC TIME FOR DUAL-BOOT
+
+  - name: Use RTC time for dual boot
+    shell: "timedatectl set-local-rtc 1 --adjust-system-clock"
+
 ### INSTALL DEVELOPMENT TOOLS ###
 
   - name: Devel tools installation

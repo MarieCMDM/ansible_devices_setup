@@ -4,12 +4,8 @@
   become: true
 
   tasks:
----
-- hosts: localhost
-  connection: local
-  become: true
 
-  tasks:
+### INSTALL CASAOS ###
 
   - name: CasaOS installation
     shell: "curl -fsSL https://get.casaos.io | sudo bash"

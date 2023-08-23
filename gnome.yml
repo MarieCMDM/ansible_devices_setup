@@ -3,11 +3,6 @@
   connection: local
   become: true
 
-  # roles:
-  #   - role: ansible-gnome-extensions
-  #     vars:
-  #       gnome_extension_ids:
-  #         - 8
   tasks:
 
 ### INSTALL GNOME TWEAKS AND EXTENSIONS
@@ -37,16 +32,20 @@
       - emoji-selector@maestroschan.fr 
       - Vitals@CoreCoding.com
 
-  - name: Extensions | enable {{ item }}
-    become_user: mattia
-    # shell: "gext enable gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
-    shell: "gnome-extensions enable {{ item }}"
-    with_items:
-      - gnome-ui-tune@itstime.tech 
-      - bluetooth-quick-connect@bjarosze.gmail.com 
-      - emoji-selector@maestroschan.fr 
-      - Vitals@CoreCoding.com
-      
+  ###
+  ###  No way to enable extensions without reload the gnome shell
+  ###
+
+  # - name: Extensions | enable {{ item }}
+  #   become_user: mattia
+  #   # shell: "gext enable gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
+  #   shell: "gnome-extensions enable {{ item }}"
+  #   with_items:
+  #     - gnome-ui-tune@itstime.tech 
+  #     - bluetooth-quick-connect@bjarosze.gmail.com 
+  #     - emoji-selector@maestroschan.fr 
+  #     - Vitals@CoreCoding.com
+
 ### SET PREFERENCES ###
 
   - name: Preferences | set dark theme ##didn't work
@@ -55,46 +54,46 @@
       key: "/org/gnome/desktop/interface/color-scheme"
       value: "'prefer-dark'"
 
-### SET KEYBINDINGS ### 
+ ### SET KEYBINDINGS ### 
 
-  # - name: Keybindings | file browser
-  #   become_user: mattia
-  #   dconf:
-  #     key: "/org/gnome/settings-daemon/plugins/media-keys/home"
-  #     value: "['<Super>f']"
+  - name: Keybindings | file browser
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/home"
+      value: "['<Super>f']"
 
-  # - name: Keybindings | web browser
-  #   become_user: mattia
-  #   dconf:
-  #     key: "/org/gnome/settings-daemon/plugins/media-keys/www"
-  #     value: "['<Super>b']"
+  - name: Keybindings | web browser
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/www"
+      value: "['<Super>b']"
 
-  # - name: Keybindings | calculator browser
-  #   become_user: mattia
-  #   dconf:
-  #     key: "/org/gnome/settings-daemon/plugins/media-keys/calculator"
-  #     value: "['<Super>c']"
+  - name: Keybindings | calculator browser
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/calculator"
+      value: "['<Super>c']"
 
-  # - name: Keybindings | terminal shortcut name
-  #   become_user: mattia
-  #   dconf:
-  #     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
-  #     value: "'terminal'"
+  - name: Keybindings | terminal shortcut name
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+      value: "'terminal'"
 
-  # - name: Keybindings | terminal shortcut command
-  #   become_user: mattia
-  #   dconf:
-  #     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
-  #     value: "'gnome-terminal'"
+  - name: Keybindings | terminal shortcut command
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+      value: "'gnome-terminal'"
   
-  # - name: Keybindings | terminal shortcut binding
-  #   become_user: mattia
-  #   dconf:
-  #     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
-  #     value: "'<Super>t'"
+  - name: Keybindings | terminal shortcut binding
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+      value: "'<Super>t'"
 
-  # - name: Keybindings | enable custom keybindings
-  #   become_user: mattia
-  #   dconf:
-  #     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-  #     value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+  - name: Keybindings | enable custom keybindings
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+      value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"

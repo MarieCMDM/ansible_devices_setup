@@ -5,19 +5,16 @@
 
   tasks:
   
+### PERFORM UPDATE && UPGRADE ###
+
   - name: apt Update & Upgrade
     apt:
       upgrade: yes
       update_cache: 'yes'
 
-  - name: Copy .bashrc config
-    copy:
-      src: files/bashrc
-      dest: /home/mattia/.bashrc
-      owner: mattia
-      group: mattia
+### INSTALL DEFAULT PACKAGES ###
 
-  - name: Install monitoring packages
+  - name: Install must-have packages
     package:
       name: 
         - htop
@@ -26,19 +23,28 @@
         - curl
         - wget
         - neofetch
+        - ranger
+
+### COPY DOTFILES ###
+
+  - name: Copy .bashrc config
+    copy:
+      src: files/bashrc
+      dest: /home/mattia/.bashrc
+      owner: mattia
+      group: mattia
 
   - name: Copy dotfiles
     copy:
-      src: files/config_dotfiles/*
+      src: files/config_dotfiles/
       dest: /home/mattia/.config/
       owner: mattia
       group: mattia
+
+### CREATE COMMON LOCATIONS ###
   
   - name: Create Github folder
     become_user: mattia
     file:
       path: /home/mattia/Documents/GitHub
       state: directory
-
-  - name: Use RTC time for dual boot
-    shell: "timedatectl set-local-rtc 1 --adjust-system-clock"
