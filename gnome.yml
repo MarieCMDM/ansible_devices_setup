@@ -29,7 +29,7 @@
       extra_args: --break-system-packages
 
   - name: Extensions | install 
-     become_user: mattia
+    become_user: mattia
     shell: "gext install gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
 
   - name: Extensions | install 
