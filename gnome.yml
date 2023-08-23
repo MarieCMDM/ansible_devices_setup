@@ -28,17 +28,24 @@
       state: latest
       extra_args: --break-system-packages
 
-  - name: Extensions | install 
+  - name: Extensions | install {{ item }}
     become_user: mattia
-    shell: "gext install gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
+    shell: "gext install{{ item }}"
+    with_items:
+      - gnome-ui-tune@itstime.tech 
+      - bluetooth-quick-connect@bjarosze.gmail.com 
+      - emoji-selector@maestroschan.fr 
+      - Vitals@CoreCoding.com
 
-  - name: Extensions | restart shell
-    shell: killall -3 gnome-shell
-
-  - name: Extensions | enable 
+  - name: Extensions | enable {{ item }}
     become_user: mattia
-    shell: "gext enable gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
-
+    # shell: "gext enable gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
+    shell: "gnome-extensions enable {{ item }}"
+    with_items:
+      - gnome-ui-tune@itstime.tech 
+      - bluetooth-quick-connect@bjarosze.gmail.com 
+      - emoji-selector@maestroschan.fr 
+      - Vitals@CoreCoding.com
 ### SET PREFERENCES ###
 
   - name: Preferences | set dark theme ##didn't work
