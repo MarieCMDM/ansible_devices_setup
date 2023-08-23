@@ -30,7 +30,7 @@
 
   - name: Extensions | install {{ item }}
     become_user: mattia
-    shell: "gext install{{ item }}"
+    shell: "gext install {{ item }}"
     with_items:
       - gnome-ui-tune@itstime.tech 
       - bluetooth-quick-connect@bjarosze.gmail.com 
