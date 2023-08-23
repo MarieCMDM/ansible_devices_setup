@@ -1,3 +1,0 @@
-[submodule "roles/jaredhocutt.gnome-extensions"]
-	path = roles/jaredhocutt.gnome-extensions
-	url = https://github.com/jaredhocutt/ansible-gnome-extensions.git
