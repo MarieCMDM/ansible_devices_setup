@@ -13,18 +13,16 @@
 ### INSTALL DEVELOPMENT TOOLS ###
 
   - name: Devel tools installation
-    snap:
-      name:
-        - brave
-        - code
-        - insomnia
-      state: lastest
     apt:
       name:
         - python3-pip
         - nodejs
         - npm
-      state: lastest   
+      state: latest   
+      deb: 
+        - https://go.microsoft.com/fwlink/?LinkID=760868
+        - https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website
+      state: present
 
   - name: PIP3 Packages installation
     pip:
@@ -32,9 +30,8 @@
 
   - name: NPM Packages installation
     npm:
-      name:
-      
-  
+      name: typescript
+
 ### USE PERSONAL WALLPAPER ###
 
   - name: Wallpaper settings (copy wallpapers)

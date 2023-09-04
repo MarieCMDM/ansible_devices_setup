@@ -31,6 +31,7 @@
       - bluetooth-quick-connect@bjarosze.gmail.com 
       - emoji-selector@maestroschan.fr 
       - Vitals@CoreCoding.com
+      - blur-my-shell@aunetx
 
   ###
   ###  No way to enable extensions without reload the gnome shell
@@ -45,6 +46,7 @@
   #     - bluetooth-quick-connect@bjarosze.gmail.com 
   #     - emoji-selector@maestroschan.fr 
   #     - Vitals@CoreCoding.com
+  #     - blur-my-shell@aunetx
 
 ### SET PREFERENCES ###
 
