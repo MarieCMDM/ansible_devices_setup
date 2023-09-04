@@ -12,7 +12,7 @@
 
 ### INSTALL DEVELOPMENT TOOLS ###
 
-  - name: Devel tools installation 1/2
+  - name: Devel tools installation 1/3
     apt:
       name:
         - python3-pip
@@ -20,11 +20,12 @@
         - npm
       state: latest 
 
-  - name: Devel tools installation  2/2
-    deb: 
-      name:
-        - https://go.microsoft.com/fwlink/?LinkID=760868
-        - https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website
+  - name: Devel tools installation  2/3
+    deb: https://go.microsoft.com/fwlink/?LinkID=760868
+    state: present
+
+  - name: Devel tools installation  3/3
+    deb: https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website
     state: present
 
   - name: PIP3 Packages installation
