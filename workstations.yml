@@ -22,8 +22,9 @@
 
   - name: Devel tools installation  2/2
     deb: 
-      - https://go.microsoft.com/fwlink/?LinkID=760868
-      - https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website
+      name:
+        - https://go.microsoft.com/fwlink/?LinkID=760868
+        - https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website
     state: present
 
   - name: PIP3 Packages installation
