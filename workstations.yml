@@ -35,6 +35,7 @@
   - name: NPM Packages installation
     npm:
       name: typescript
+      global: true
 
 ### USE PERSONAL WALLPAPER ###
 
