@@ -32,21 +32,7 @@
       - emoji-selector@maestroschan.fr 
       - Vitals@CoreCoding.com
       - blur-my-shell@aunetx
-
-  ###
-  ###  No way to enable extensions without reload the gnome shell
-  ###
-
-  # - name: Extensions | enable {{ item }}
-  #   become_user: mattia
-  #   # shell: "gext enable gnome-ui-tune@itstime.tech bluetooth-quick-connect@bjarosze.gmail.com emoji-selector@maestroschan.fr Vitals@CoreCoding.com"
-  #   shell: "gnome-extensions enable {{ item }}"
-  #   with_items:
-  #     - gnome-ui-tune@itstime.tech 
-  #     - bluetooth-quick-connect@bjarosze.gmail.com 
-  #     - emoji-selector@maestroschan.fr 
-  #     - Vitals@CoreCoding.com
-  #     - blur-my-shell@aunetx
+      - dash-to-dock@micxgx.gmail.com
 
 ### SET PREFERENCES ###
 
