@@ -12,46 +12,27 @@
 
 ### INSTALL DEVELOPMENT TOOLS ###
 
-  - name: Devel tools installation 1/3
+  - name: Python installation
     apt:
       name:
         - python3-pip
-        - nodejs
-        - npm
       state: latest 
+    
+  - name: Nvm installation
+    shell: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
 
-  - name: Devel tools installation  2/3
+  - name: VsCode installation
     apt:
       deb: https://go.microsoft.com/fwlink/?LinkID=760868
-
-  - name: Devel tools installation  3/3
-    apt:
-      deb: https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website
-
-  - name: PIP3 Packages installation
-    pip:
-      name:
-
-  - name: NPM Packages installation
-    npm:
-      name: typescript
-      global: true
 
 ### USE PERSONAL WALLPAPER ###
 
   - name: Wallpaper settings (copy wallpapers)
     copy:
-      src: files/wallpapers/{{ item }}
-      dest: /usr/share/backgrounds/{{ item }}
+      src: files/wallpapers
+      dest: /home/mattia/
       owner: root
       group: root
-    with_items:
-      - looking-raccoon.png
-      - space-raccoon.jpg
-      - wallhaven-1.png
-      - wallhaven-2.png
-      - wallhaven-3.jpg
-
 
   - name: Wallpaper settings (set wallpaper)
     become_user: mattia

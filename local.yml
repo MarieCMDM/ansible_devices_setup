@@ -25,6 +25,15 @@
         - neofetch
         - ranger
         - gparted
+        - zsh
+        - chsh
+        - git
+    
+  - name: Set zsh as default
+    - shell: "chsh -s $(which zsh)"
+
+  - name: Install oh_my_zsh
+    - shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 
   - name: Install Brave Browser 1/3
     shell: 'curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg'
@@ -40,16 +49,9 @@
 
 ### COPY DOTFILES ###
 
-  - name: Copy .bashrc config
-    copy:
-      src: files/bashrc
-      dest: /home/mattia/.bashrc
-      owner: mattia
-      group: mattia
-
   - name: Copy dotfiles
     copy:
-      src: files/config_dotfiles/
+      src: files/dotfiles/
       dest: /home/mattia/.config/
       owner: mattia
       group: mattia

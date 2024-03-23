@@ -1,0 +1,44 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+### INSTALL GNOME TWEAKS AND EXTENSIONS
+
+  - name: Extensions | install gnome tweaks
+    apt:
+      name:
+        - gnome-shell-extensions
+        - gnome-tweaks
+        - dbus-x11
+        - python3-pip
+      state: latest
+    
+  - name: Extensions | install pip3 gext 
+    pip:
+      name:
+        - gnome-extensions-cli
+      state: latest
+      extra_args: --break-system-packages
+
+  - name: Extensions | install {{ item }}
+    become_user: mattia
+    shell: "gext install {{ item }}"
+    with_items:
+      - forge@jmmaranan.com
+      - top-bar-organizer@julian.gse.jsts.xyz2
+      - Vitals@CoreCoding.com
+      - blur-my-shell@aunetx
+      - dash-animator@icedman.github.com
+
+### SET PREFERENCES ###
+
+  - name: Preferences | set dark theme ##didn't work
+    become_user: mattia
+    dconf:
+      key: "/org/gnome/desktop/interface/color-scheme"
+      value: "'prefer-dark'"
+
+ ### SET KEYBINDINGS ### 
